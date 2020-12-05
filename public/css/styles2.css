@@ -1,0 +1,290 @@
+
+body {
+	background-color: #F2F8FD;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Roboto', sanf-serif;
+}
+a {
+	color: black;
+	text-decoration: none;
+}
+
+/* === page-title === */
+
+.page-title{
+	width: 100%;
+	height: 170px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.title-form {
+	width: 500px;
+	height: 60px;
+	font-size: 30px;
+}
+
+/* === end pf page-title === */
+
+/* === main === */
+
+.main {
+	width: 100%;
+	height: 1042px;
+	display: flex;
+    margin-top: 100px;
+}
+.block-container {
+	width: 41.6667%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.block2 {
+	background-color: white;
+	border-radius: 50px;
+	border: 3px solid black;
+}
+#intro-title {
+	font-size: 45px;
+}
+#intro-wrapper {
+	width: 100%;
+	height: 316px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+#intro {
+	height: 412px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#intro-price {
+	font-size: 30px;
+}
+.buttons {
+	width: 67.125%;
+	height: 120px;
+	display: flex;
+	justify-content: space-between;
+}
+#button-call {
+	width: 120px;
+	height: 120px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#main-button {
+	width: 400px;
+	height: 120px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#main-button-text {
+	font-size: 45px;
+	text-align: center;
+}
+#info {
+	height: 580px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+.info-wrapper {
+    margin-left: 50px;
+	width: 65%;
+	height: 490px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+    font-size: 30px;
+    line-height: 1.5;
+}
+.img-container {
+	width: 29.1667%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+.img-container img {
+	width: 82.14%;
+	height: 306px;
+}
+.undisplayed-img {
+	display: none;
+}
+#container-3 {
+	display: none;
+}
+/* === end of main === */
+
+@media screen and (max-width: 1440px){
+	.img-container img {
+		height: 250px;
+	}
+	#button-call {
+		height: 100px;
+	}
+	#main-button {
+		height: 100px;
+	}
+	#main-button-text {
+		font-size: 35px;
+	}
+}
+@media screen and (max-width: 1350px){
+	#button-call {
+		display: none;
+	}
+}
+@media screen and (max-width: 1250px){
+	#container-2 {
+		display: none;
+	}
+	#container-1 img {
+		height: 300px
+	}
+	#container-1 {
+		width: 50%;
+	}
+	.block-container {
+		width: 49%;
+		justify-content: flex-start;
+	}
+	.main {
+		height: 2200px;
+	}
+	.undisplayed-img {
+		display: block;
+	}
+}
+@media screen and (max-width: 900px){
+	.main {
+		height: 3162px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.block-container {
+		width: 97%;
+	}
+	#intro {
+		width: 800px;
+	}
+	#info {
+		width: 800px;
+	}
+	.img-container {
+		display: none;
+	}
+	#container-3 {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+	}
+	#container-3 img {
+		width: 460px;
+		height: 306px;
+	}
+}
+@media screen and (max-width: 800px){
+	#social-text {
+		display: none;
+	}
+	#contacts-text {
+		display: none;
+	}
+	#intro {
+		width: 700px;
+	}
+	#info {
+		width: 700px;
+	}
+	.block-container {
+		width: 90%;
+	}
+}
+@media screen and (max-width: 800px){
+	#header-info {
+		font-size: 20px;
+	}
+	.block-container {
+		width: 100%;
+	}
+	.contacts {
+		font-size: 20px;
+	}
+}
+@media screen and (max-width: 700px){
+	#intro {
+		width: 100%;
+	}
+	#info {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 600px){
+	.header {
+		justify-content: space-around;
+	}
+	#header-info {
+		display: none;
+	}
+	.title-form {
+		width: 400px;
+		font-size: 25px;
+	}
+	.page-title {
+		justify-content: flex-start;
+	}
+}
+@media screen and (max-width: 500px){
+	.title-form {
+		width: 400px;
+		font-size: 20px;
+	}
+	#container-3 img {
+		width: 400px;
+		height: 266.667px;
+	}
+	.main {
+		height: 2800px;
+	}
+	.line {
+		font-size: 25px;
+	}
+}
+@media screen and (max-width: 400px){
+	#container-3 img {
+		width: 300px;
+		height: 200px;
+	}
+	.title-form {
+		width: 300px;
+		font-size: 15px;
+	}
+	.main {
+		height: 2600px;
+	}
+	.contacts {
+		display: none;
+	}
+	#header-button-call {
+		display: none;
+	}
+}
