@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/page/{pageCode}/{lang}', 'App\Http\Controllers\PageController@page');
+Route::get('/site/{pageCode}/{lang}', 'App\Http\Controllers\PageController@page');
+
+Route::resource('/page', 'App\Http\Controllers\PageResController');

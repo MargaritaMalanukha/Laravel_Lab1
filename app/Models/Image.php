@@ -11,8 +11,60 @@ class Image extends Model
 {
     use HasFactory;
 
-    public static function render(Request $request) {
+    protected $fillable = [ 'id', 'imageCode', 'pageCode'];
+
+    public static function render($code) {
         return DB::table('images')
-            ->where('pageCode', '=', $request->route('pageCode'))->get();
+            ->where('pageCode', '=', $code)->get();
+    }
+
+    public static function createImage(Request $request)
+    {
+        DB::table('images')->insert([
+            'pageCode' => $request->input('pageCode'),
+            'imageCode' => $request->input('firstPic')
+        ]);
+        DB::table('images')->insert([
+            'pageCode' => $request->input('pageCode'),
+            'imageCode' => $request->input('secondPic')
+        ]);
+        DB::table('images')->insert([
+            'pageCode' => $request->input('pageCode'),
+            'imageCode' => $request->input('thirdPic')
+        ]);
+        DB::table('images')->insert([
+            'pageCode' => $request->input('pageCode'),
+            'imageCode' => $request->input('fourthPic')
+        ]);
+        DB::table('images')->insert([
+            'pageCode' => $request->input('pageCode'),
+            'imageCode' => $request->input('fifthPic')
+        ]);
+        DB::table('images')->insert([
+            'pageCode' => $request->input('pageCode'),
+            'imageCode' => $request->input('sixthPic')
+        ]);
+    }
+
+    public static function deleteImages($pageCode)
+    {
+        DB::table('images')->where('pageCode', $pageCode)->delete();
+    }
+
+    public static function updateImages(Request $request) {
+        self::updateImage('1Pic', $request, 0);
+        self::updateImage('2Pic', $request, 1);
+        self::updateImage('3Pic', $request, 2);
+        self::updateImage('4Pic', $request, 3);
+        self::updateImage('5Pic', $request, 4);
+        self::updateImage('6Pic', $request, 5);
+    }
+
+    public static function updateImage($key, Request $request, $number) {
+        $currentPageImages = DB::table('images')->where('pageCode', $request->input('code'))->get();
+        $id = $currentPageImages[$number]->id;
+        DB::table('images')->where('id', $id)->update([
+            'pageCode' => $request->input('code'),
+            'imageCode' => $request->input($key)]);
     }
 }

@@ -4,9 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>HolidayMaker</title>
-        <link rel="stylesheet" type="text/css" href="../../../css/landing_styles.css">
-        <link rel="stylesheet" type="text/css" href="../../../css/styles2.css">
-        <link rel="stylesheet" type="text/css" href="../../../css/normalize.css">
+        <link rel="stylesheet" type="text/css" href=" {{ asset('css/landing_styles.css') }}">
+        <link rel="stylesheet" type="text/css" href=" {{ asset('css/styles2.css') }}">
+        <link rel="stylesheet" type="text/css" href=" {{ asset('css/admin.css') }}">
+        <link rel="stylesheet" type="text/css" href=" {{ asset('css/normalize.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
     </head>
@@ -20,8 +21,8 @@
                         <img src="../../../img/phone.png">
                     </div>
                     </a>
-                    <a href="?"><div class="button" id="header-button">
-                        <div class="header-button-text">ЗАБРОНЮВАТИ</div>
+                    <a href="{{ route('page.index') }}"><div class="button" id="header-button">
+                            <div class="header-button-text">ADMIN PANEL</div>
                     </div></a>
                     <div id="header-info">+38 (066) 582-85-93<br>holidaymkr@gmail.com</div>
             </div>

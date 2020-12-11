@@ -12,7 +12,7 @@ class PageController extends Controller
     public function page(Request $request) {
 
         $page = Page::render($request); //returns one page
-        $image = Image::render($request); //returns array of images
+        $image = Image::render($page->code); //returns array of images
         $lang = $request->route('lang');
 
         return view('info')

@@ -3,6 +3,12 @@
 
 @section('content')
 
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+
 	<section class="main">
 
         <div class="img-container" id="container-1">
@@ -29,7 +35,11 @@
 							<img src="../../../img/phone2.png">
 						</div>
 						<div class="button" id="main-button">
-							<div id="main-button-text">ВІДПРАВИТИ<br>ЗАЯВКУ</div>
+                            @if($lang == 'ua')
+							    <div id="main-button-text">ВІДПРАВИТИ<br>ЗАЯВКУ</div>
+                            @else
+                                <div id="main-button-text">ОТПРАВИТЬ<br>ЗАЯВЛЕНИЕ</div>
+                            @endif
 						</div>
 					</div>
 				</div>
