@@ -15,12 +15,6 @@
                 <div class="row" style="margin-bottom: 50px; margin-top: 50px; display: flex; flex-direction: column; align-items: center">
                     <div class="admin-page-line">
                         <div class="form-group">
-                            <strong>Page Code:</strong>
-                            <input type="text" name="code" class="form-control" value="{{ $page->code }}">
-                        </div>
-                    </div>
-                    <div class="admin-page-line">
-                        <div class="form-group">
                             <strong>CaptionUA:</strong>
                             <input type="text" name="captionUA" class="form-control" value="{{$page->captionUA }}">
                         </div>
@@ -31,28 +25,44 @@
                             <input type="text" name="captionRU" class="form-control" value="{{$page->captionRU}}">
                         </div>
                     </div>
-                    <div class="admin-page-line" style="height: 140px">
+                    @if($page->container == 'page')
+                        <div class="admin-page-line" style="height: 140px">
+                            <div class="form-group">
+                                <strong>ContentUA:</strong>
+                                <textarea class="form-control" style="height:100px" name="contentUA">{{ $page->contentUA }}</textarea>
+                            </div>
+                        </div>
+                        <div class="admin-page-line" style="margin-bottom: 50px">
+                            <div class="form-group">
+                                <strong>ContentRU:</strong>
+                                <textarea class="form-control" style="height:100px" name="contentRU">{{ $page->contentRU }}</textarea>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="admin-page-line" style="margin-bottom: 50px">
                         <div class="form-group">
-                            <strong>ContentUA:</strong>
-                            <textarea class="form-control" style="height:100px" name="contentUA">{{ $page->contentUA }}</textarea>
+                            <strong>Image for container:</strong>
+                            <input type="text" name="imageMain" class="form-control" value="{{$page->imageMain}}">
                         </div>
                     </div>
                     <div class="admin-page-line" style="margin-bottom: 50px">
                         <div class="form-group">
-                            <strong>ContentRU:</strong>
-                            <textarea class="form-control" style="height:100px" name="contentRU">{{ $page->contentRU }}</textarea>
+                            <strong>Parent Code:</strong>
+                            <input type="text" name="parentCode" class="form-control" value="{{$page->parentCode}}">
                         </div>
                     </div>
-                    <div class="admin-page-line" style="height: 400px">
-                        <div class="form-group" style="height: 400px">
-                            <strong>Images URL:</strong>
-                            <div class="input-images-wrapper">
-                                @foreach($images as $image)
-                                    <input type="text" name="{{ $loop->iteration }}Pic" class="form-control" value="{{$image->imageCode}}">
-                                @endforeach
+                    @if($page->container == 'page')
+                        <div class="admin-page-line" style="height: 400px">
+                            <div class="form-group" style="height: 400px">
+                                <strong>Images URL:</strong>
+                                <div class="input-images-wrapper">
+                                    @foreach($images as $image)
+                                        <input type="text" name="{{ $loop->iteration }}Pic" class="form-control" value="{{$image->imageCode}}">
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="admin-page-line" style="margin-top: 30px">
                         <button type="submit" class="button" id="store-button">Submit</button>
                     </div>

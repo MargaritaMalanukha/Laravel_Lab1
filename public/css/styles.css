@@ -26,8 +26,9 @@ a {
 /* === main-part === */
 
 .main-part {
+    margin-top: 100px;
 	width: 100%;
-	height: 1620px;
+	min-height: 490px;
 	display: flex;
 	justify-content: space-around;
 	align-items: flex-start;
@@ -42,6 +43,7 @@ a {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
+    margin-top: 50px;
 }
 .block-text-wrapper {
 	height: 100%;

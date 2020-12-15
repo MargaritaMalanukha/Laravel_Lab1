@@ -42,6 +42,27 @@
                             <textarea class="form-control" style="height:100px" name="contentRU"></textarea>
                         </div>
                     </div>
+                    <div class="admin-page-line" style="margin-bottom: 40px">
+                        <div class="form-group">
+                            <strong>Image for container:</strong>
+                            <input type="text" name="imageMain" class="form-control">
+                        </div>
+                    </div>
+                    <div class="admin-page-line" style="margin-bottom: 50px">
+                        <div class="form-group">
+                            <strong>Parent Code:</strong>
+                            <input type="text" name="parentCode" class="form-control">
+                        </div>
+                    </div>
+                    <div class="admin-page-line" style="margin-bottom: 40px">
+                        <div class="form-group">
+                            <strong>Display as:</strong>
+                            <select name="container">
+                                <option value="page">page</option>
+                                <option value="container item">tile</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="admin-page-line" style="height: 400px">
                         <div class="form-group" style="height: 400px">
                             <strong>Images URL:</strong>

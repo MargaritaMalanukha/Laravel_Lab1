@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/site/{pageCode}/{lang}', 'App\Http\Controllers\PageController@page');
+Route::post('/site/{pageCode}/{lang}', 'App\Http\Controllers\PageController@order');
 
 Route::resource('/page', 'App\Http\Controllers\PageResController');

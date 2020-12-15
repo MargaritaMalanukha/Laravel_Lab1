@@ -1,0 +1,24 @@
+.container-title-wrapper {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.ordering-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    font-size: 24px;
+}
+
+.ordering-wrapper form {
+    display: flex;
+    width: 350px;
+    justify-content: space-between;
+    height: 40px;
+}
+
+.ordering-wrapper form input {
+
+}

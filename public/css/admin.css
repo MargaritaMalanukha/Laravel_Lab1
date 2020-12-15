@@ -32,13 +32,12 @@
 }
 
 #admin-create-button {
-    width: 150px;
+    width: 200px;
     height: 50px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    align-self: flex-end;
     margin: 40px 100px 40px 40px;
 }
 
@@ -80,6 +79,12 @@
 
 .admin-buttons-container {
     display: flex;
-    width: 500px;
+    width: 550px;
     justify-content: space-evenly;
+}
+
+.admin-upper-buttons-wrapper {
+    display: flex;
+    align-self: flex-end;
+    justify-content: space-around;
 }

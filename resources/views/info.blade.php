@@ -9,7 +9,9 @@
         </div>
     @endif
 
-	<section class="main">
+    <a class="button" id="admin-create-button" href="../../site/{{$page->parentCode}}/ua" style="width: 150px; margin-bottom: 0">GO BACK</a>
+
+	<section class="main" style="margin-top: 40px">
 
         <div class="img-container" id="container-1">
             @foreach($image as $i)

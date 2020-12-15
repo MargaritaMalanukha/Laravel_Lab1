@@ -5,9 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>HolidayMaker</title>
         <link rel="stylesheet" type="text/css" href=" {{ asset('css/landing_styles.css') }}">
+        <link rel="stylesheet" type="text/css" href=" {{ asset('css/styles.css') }}">
         <link rel="stylesheet" type="text/css" href=" {{ asset('css/styles2.css') }}">
         <link rel="stylesheet" type="text/css" href=" {{ asset('css/admin.css') }}">
         <link rel="stylesheet" type="text/css" href=" {{ asset('css/normalize.css') }}">
+        <link rel="stylesheet" type="text/css" href=" {{ asset('css/container.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
     </head>
