@@ -17,12 +17,18 @@ class PageResController extends Controller
 
     public function create()
     {
-        return view('create');
+        return view('create')
+            ->with('is_alias', false);
     }
 
     public function store(Request $request)
     {
-        if ($request -> input('container') == 'page') {
+
+
+        if ($request ->input('aliasAt') != null) {
+            Page::createAlias($request);
+            return redirect( 'site/' . $request->input('aliasAt') . '/ua')->with('success', 'Alias saved!');
+        } else if ($request -> input('container') == 'page') {
             $request->validate([
                 'pageCode' => 'required',
                 'captionUA' => 'required',
@@ -63,7 +69,8 @@ class PageResController extends Controller
 
     public function edit(Page $page)
     {
-        $images = Image::render($page->code);
+        if ($page->aliasAt != null) $images = Image::render($page->aliasAt);
+        else $images = Image::render($page->code);
         return view('edit')
             ->with('page', $page)
             ->with('images', $images);

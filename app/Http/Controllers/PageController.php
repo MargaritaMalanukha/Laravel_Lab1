@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Page;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -13,6 +12,16 @@ class PageController extends Controller
 
     public function page(Request $request) {
         $page = Page::render($request->route('pageCode')); //returns one page
+
+        if ($page->aliasAt != null){
+            Page::fillAlias($page);
+            $image = Image::render($page->aliasAt);
+            $lang = $request->route('lang');
+            return view('info')
+                ->with('page', $page)
+                ->with('image', $image)
+                ->with('lang', $lang);
+        }
 
         if ($request->route('pageCode') == 'countries') { //define if the page if a main page (it hasn't got any properties)
             $pages = Page::renderChildren($request->route('pageCode'));
@@ -70,5 +79,10 @@ class PageController extends Controller
         $temp = self::$options[$id];
         self::$options[$id] = self::$options[0];
         self::$options[0] = $temp;
+    }
+
+    public function createAlias() {
+        return view('create')
+            ->with('is_alias', true);
     }
 }

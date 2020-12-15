@@ -63,6 +63,14 @@
                             </div>
                         </div>
                     @endif
+                    @if($page->aliasAt != null)
+                        <div class="admin-page-line">
+                            <div class="form-group">
+                                <strong>Page refer to:</strong>
+                                <input type="text" name="aliasAt" class="form-control" value="{{$page->aliasAt}}">
+                            </div>
+                        </div>
+                    @endif
                     <div class="admin-page-line" style="margin-top: 30px">
                         <button type="submit" class="button" id="store-button">Submit</button>
                     </div>

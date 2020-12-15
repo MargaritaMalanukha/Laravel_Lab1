@@ -79,11 +79,12 @@
 
 .admin-buttons-container {
     display: flex;
-    width: 550px;
+    width: 600px;
     justify-content: space-evenly;
 }
 
 .admin-upper-buttons-wrapper {
+    width: 900px;
     display: flex;
     align-self: flex-end;
     justify-content: space-around;

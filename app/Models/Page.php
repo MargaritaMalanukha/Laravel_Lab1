@@ -12,8 +12,40 @@ class Page extends Model
     use HasFactory;
 
     protected $fillable = ['code', 'captionUA', 'captionRU', 'contentUA',
-        'contentRU', 'imageMain', 'parentCode', 'order_type', 'container',
+        'contentRU', 'imageMain', 'parentCode', 'aliasAt', 'order_type', 'container',
         'created_at', 'updated_at'];
+
+    public static function createAlias(Request $request) {
+        DB::table('pages')->insert([
+            'code' => $request->input('pageCode'),
+            'parentCode' => $request->input('parentCode'),
+            'aliasAt' => $request->input('aliasAt')
+        ]);
+    }
+
+    public static function fillAlias($page) {
+        if ($page->contentUA == null) {
+            $pageRefersTo = self::render($page->aliasAt);
+            DB::table('pages')->where('code', '=', $page->code)->update([
+                'captionUA' => $pageRefersTo->captionUA,
+                'captionRU' => $pageRefersTo->captionRU,
+                'contentUA' => $pageRefersTo->contentUA,
+                'contentRU' => $pageRefersTo->contentRU,
+                'container' => $pageRefersTo->container,
+                'imageMain' => $pageRefersTo->imageMain
+            ]);
+        }
+    }
+
+    public static function fillAliasTile($page) {
+        $pageRefersTo = self::render($page->aliasAt);
+        DB::table('pages')->where('code', '=', $page->code)->update([
+            'captionUA' => $pageRefersTo->captionUA,
+            'captionRU' => $pageRefersTo->captionRU,
+            'container' => $pageRefersTo->container,
+            'imageMain' => $pageRefersTo->imageMain
+        ]);
+    }
 
     public static function render($pageCode) {
         return DB::table('pages')
@@ -21,6 +53,10 @@ class Page extends Model
     }
 
     public static function renderChildren($pageCode) {
+        $page = self::render($pageCode);
+        if ($page->aliasAt != null && $page->captionUA == null) {
+            self::fillAliasTile($page);
+        }
         return DB::table('pages')
             ->where('parentCode', '=', $pageCode)->get();
     }

@@ -11,6 +11,7 @@
             <form action="{{ route('page.store') }}" method="POST" >
                 @csrf
 
+
                 <div class="row" style="margin-bottom: 50px; margin-top: 50px; display: flex; flex-direction: column; align-items: center">
                     <div class="admin-page-line">
                         <div class="form-group">
@@ -18,6 +19,7 @@
                             <input type="text" name="pageCode" class="form-control">
                         </div>
                     </div>
+                    @if($is_alias == false)
                     <div class="admin-page-line">
                         <div class="form-group">
                             <strong>CaptionUA:</strong>
@@ -76,6 +78,21 @@
                             </div>
                         </div>
                     </div>
+                    @else
+                        <div class="admin-page-line" style="margin-bottom: 50px">
+                            <div class="form-group">
+                                <strong>Parent Code:</strong>
+                                <input type="text" name="parentCode" class="form-control">
+                            </div>
+                        </div>
+                        <div class="admin-page-line" style="margin-bottom: 50px">
+                            <div class="form-group">
+                                <strong>Page refer to:</strong>
+                                <input type="text" name="aliasAt" class="form-control">
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="admin-page-line" style="margin-top: 30px">
                         <button type="submit" class="button" id="store-button">Submit</button>
                     </div>
