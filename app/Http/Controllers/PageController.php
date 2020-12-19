@@ -13,7 +13,7 @@ class PageController extends Controller
     public function page(Request $request) {
         $page = Page::render($request->route('pageCode')); //returns one page
 
-        if ($page->aliasAt != null){
+        if ($request->route('pageCode') != 'countries' && $page->aliasAt != null){
             Page::fillAlias($page);
             $image = Image::render($page->aliasAt);
             $lang = $request->route('lang');
@@ -31,6 +31,8 @@ class PageController extends Controller
                 ->with('parentCode', 'error')
                 ->with('options', self::$options);
         }
+
+
         if (Page::hasAChild($page->code) == true) { //define if the page is a catalog
             $pages = Page::renderChildren($request->route('pageCode'));
             return view('container')
@@ -83,6 +85,8 @@ class PageController extends Controller
 
     public function createAlias() {
         return view('create')
-            ->with('is_alias', true);
+            ->with('pageType', 'alias');
     }
+
+
 }

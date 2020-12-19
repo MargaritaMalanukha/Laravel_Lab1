@@ -19,7 +19,7 @@
                             <input type="text" name="pageCode" class="form-control">
                         </div>
                     </div>
-                    @if($is_alias == false)
+                    @if($pageType == 'page')
                     <div class="admin-page-line">
                         <div class="form-group">
                             <strong>CaptionUA:</strong>
@@ -32,28 +32,26 @@
                             <input type="text" name="captionRU" class="form-control">
                         </div>
                     </div>
-                    <div class="admin-page-line" style="height: 140px">
+                        <p>In order to insert images, use [[ images | url ]]. Images quantity should be 6 or less.</p>
+                        <p>To make a link on another page, use [[ link | page code | title ]] </p>
+                        <p>To show page in container, use [[ container | container code ]] </p>
+                        <p style="text-align: center">Image and container command is applied for both lang versions,<br/> so you shouldn't repeat commands twice.</p>
+                    <div class="admin-page-line" style="height: 240px">
                         <div class="form-group">
                             <strong>ContentUA:</strong>
-                            <textarea class="form-control" style="height:100px" name="contentUA"></textarea>
+                            <textarea class="form-control" style="height:200px" name="contentUA"></textarea>
                         </div>
                     </div>
-                    <div class="admin-page-line" style="margin-bottom: 40px">
+                    <div class="admin-page-line" style="height: 240px; margin-bottom: 40px">
                         <div class="form-group">
                             <strong>ContentRU:</strong>
-                            <textarea class="form-control" style="height:100px" name="contentRU"></textarea>
+                            <textarea class="form-control" style="height:200px" name="contentRU"></textarea>
                         </div>
                     </div>
                     <div class="admin-page-line" style="margin-bottom: 40px">
                         <div class="form-group">
-                            <strong>Image for container:</strong>
+                            <strong>Tile Image:</strong>
                             <input type="text" name="imageMain" class="form-control">
-                        </div>
-                    </div>
-                    <div class="admin-page-line" style="margin-bottom: 50px">
-                        <div class="form-group">
-                            <strong>Parent Code:</strong>
-                            <input type="text" name="parentCode" class="form-control">
                         </div>
                     </div>
                     <div class="admin-page-line" style="margin-bottom: 40px">
@@ -63,19 +61,6 @@
                                 <option value="page">page</option>
                                 <option value="container item">tile</option>
                             </select>
-                        </div>
-                    </div>
-                    <div class="admin-page-line" style="height: 400px">
-                        <div class="form-group" style="height: 400px">
-                            <strong>Images URL:</strong>
-                            <div class="input-images-wrapper">
-                                <input type="text" name="firstPic" class="form-control">
-                                <input type="text" name="secondPic" class="form-control">
-                                <input type="text" name="thirdPic" class="form-control">
-                                <input type="text" name="fourthPic" class="form-control">
-                                <input type="text" name="fifthPic" class="form-control">
-                                <input type="text" name="sixthPic" class="form-control">
-                            </div>
                         </div>
                     </div>
                     @else

@@ -54,7 +54,7 @@ class Page extends Model
 
     public static function renderChildren($pageCode) {
         $page = self::render($pageCode);
-        if ($page->aliasAt != null && $page->captionUA == null) {
+        if ($pageCode != 'countries' && $page->aliasAt != null && $page->captionUA == null) {
             self::fillAliasTile($page);
         }
         return DB::table('pages')
@@ -69,15 +69,16 @@ class Page extends Model
 
     public static function createPage(Request $request)
     {
+        Parser::process($request);
         if ($request->input('container') == 'page') {
             DB::table('pages')->insert([
                 'code' => $request->input('pageCode'),
                 'captionUA' => $request->input('captionUA'),
                 'captionRU' => $request->input('captionRU'),
-                'contentUA' => $request->input('contentUA'),
-                'contentRU' => $request->input('contentRU'),
+                'contentUA' => Parser::$contentUA,
+                'contentRU' => Parser::$contentRU,
                 'container' => $request->input('container'),
-                'parentCode' => $request->input('parentCode'),
+                'parentCode' => Parser::$parentCode,
                 'imageMain' => $request->input('imageMain')
             ]);
         } else {
@@ -87,7 +88,6 @@ class Page extends Model
                 'captionRU' => $request->input('captionRU'),
                 'imageMain' => $request->input('imageMain'),
                 'container' => $request->input('container'),
-                'parentCode' => $request->input('parentCode')
             ]);
         }
 

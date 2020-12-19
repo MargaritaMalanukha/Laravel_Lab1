@@ -18,31 +18,10 @@ class Image extends Model
             ->where('pageCode', '=', $code)->get();
     }
 
-    public static function createImage(Request $request)
-    {
+    public static function createImage(Request $request, $imageURL) {
         DB::table('images')->insert([
             'pageCode' => $request->input('pageCode'),
-            'imageCode' => $request->input('firstPic')
-        ]);
-        DB::table('images')->insert([
-            'pageCode' => $request->input('pageCode'),
-            'imageCode' => $request->input('secondPic')
-        ]);
-        DB::table('images')->insert([
-            'pageCode' => $request->input('pageCode'),
-            'imageCode' => $request->input('thirdPic')
-        ]);
-        DB::table('images')->insert([
-            'pageCode' => $request->input('pageCode'),
-            'imageCode' => $request->input('fourthPic')
-        ]);
-        DB::table('images')->insert([
-            'pageCode' => $request->input('pageCode'),
-            'imageCode' => $request->input('fifthPic')
-        ]);
-        DB::table('images')->insert([
-            'pageCode' => $request->input('pageCode'),
-            'imageCode' => $request->input('sixthPic')
+            'imageCode' => $imageURL
         ]);
     }
 

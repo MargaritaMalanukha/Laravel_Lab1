@@ -49,9 +49,9 @@
 			<div class="block2" id="info">
 				<div class="info-wrapper">
                     @if($lang == 'ua')
-					    {{ $page->contentUA }}
+					    {!! $page->contentUA !!}
                     @else
-                        {{ $page->contentRU }}
+                        {!! $page->contentRU !!}
                     @endif
 				</div>
 			</div>

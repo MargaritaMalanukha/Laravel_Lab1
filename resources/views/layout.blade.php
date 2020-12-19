@@ -19,6 +19,12 @@
             <div class="header-wrapper">
                 <a href="?"><img src="../../../img/menu.png"></a>
                 <div class="header-inner-wrapper">
+                <!--  <form action="/site" method="POST">
+                        <select name="lang">
+                            <option value="ua">ua</option>
+                            <option value="ru">ru</option>
+                        </select>
+                    </form>-->
                     <a href="?"><div class="button" id="header-button-call">
                         <img src="../../../img/phone.png">
                     </div>

@@ -14,6 +14,12 @@
             <a class="button" id="admin-create-button" href="site/countries/ua">GO TO MAIN</a>
         </div>
 
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+
 
         @foreach($pages as $page)
             <div class="admin-page-line">
@@ -30,11 +36,7 @@
                 </div>
             </div>
         @endforeach
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
+
     </div>
 </section>
 

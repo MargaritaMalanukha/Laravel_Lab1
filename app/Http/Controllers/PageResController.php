@@ -18,16 +18,19 @@ class PageResController extends Controller
     public function create()
     {
         return view('create')
-            ->with('is_alias', false);
+            ->with('pageType', 'page');
     }
 
     public function store(Request $request)
     {
-
-
         if ($request ->input('aliasAt') != null) {
+            $request->validate([
+                'pageCode' => 'required',
+                'parentCode' => 'required',
+                'aliasAt' => 'required'
+            ]);
             Page::createAlias($request);
-            return redirect( 'site/' . $request->input('aliasAt') . '/ua')->with('success', 'Alias saved!');
+            return redirect()->route('page.index')->with('success', 'Alias saved!');
         } else if ($request -> input('container') == 'page') {
             $request->validate([
                 'pageCode' => 'required',
@@ -35,20 +38,12 @@ class PageResController extends Controller
                 'captionRU' => 'required',
                 'contentUA' => 'required',
                 'contentRU' => 'required',
-                'firstPic' => 'required',
-                'secondPic'=> 'required',
-                'thirdPic' => 'required',
-                'fourthPic' => 'required',
-                'fifthPic' => 'required',
-                'sixthPic' => 'required',
-                'imageMain' => 'required',
-                'parentCode' => 'required'
+                'imageMain' => 'required'
             ]);
             $pageCode = 'site/' . $request->input('pageCode') . '/ua';
-            Image::createImage($request);
             Page::createPage($request);
             return redirect($pageCode)->with('success', 'Page saved!');
-        } else {
+        } else if ($request -> input('container') == 'container item') {
             $request->validate([
                 'pageCode' => 'required',
                 'captionUA' => 'required',
@@ -83,13 +78,7 @@ class PageResController extends Controller
                 'captionUA' => 'required',
                 'captionRU' => 'required',
                 'contentUA' => 'required',
-                'contentRU' => 'required',
-                '1Pic' => 'required',
-                '2Pic'=> 'required',
-                '3Pic' => 'required',
-                '4Pic' => 'required',
-                '5Pic' => 'required',
-                '6Pic' => 'required'
+                'contentRU' => 'required'
             ]);
             Image::updateImages($request);
         } else {

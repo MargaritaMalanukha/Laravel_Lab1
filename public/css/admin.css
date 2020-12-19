@@ -89,3 +89,9 @@
     align-self: flex-end;
     justify-content: space-around;
 }
+
+.admin-panel-block form p {
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+}
