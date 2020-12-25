@@ -79,7 +79,8 @@ class Page extends Model
                 'contentRU' => Parser::$contentRU,
                 'container' => $request->input('container'),
                 'parentCode' => Parser::$parentCode,
-                'imageMain' => $request->input('imageMain')
+                'imageMain' => $request->input('imageMain'),
+                'entity' => $request->session()->get('selectedEntity')
             ]);
         } else {
             DB::table('pages')->insert([
@@ -112,6 +113,19 @@ class Page extends Model
     public static function saveOrder($orderType, $parentCode) {
         DB::table('pages')->where('parentCode', '=', $parentCode)->update([
             'order_type' => $orderType
+        ]);
+    }
+
+    public static function updateP(Request $request, $pageCode)
+    {
+        DB::table('pages')->where('code', '=', $pageCode)->update([
+            'captionUA' => $request->input('captionUA'),
+            'captionRU' => $request->input('captionRU'),
+            'contentUA' => $request->input('contentUA'),
+            'contentRU' => $request->input('contentRU'),
+            'container' => $request->input('container'),
+            'parentCode' => $request->input('parentCode'),
+            'imageMain' => $request->input('imageMain')
         ]);
     }
 }

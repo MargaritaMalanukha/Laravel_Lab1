@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomField;
+use App\Models\Entitie;
+use App\Models\Field;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Models\Page;
@@ -15,10 +18,12 @@ class PageResController extends Controller
             ->with('pages', $pages);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $fields = Field::findAllByEntity($request->session()->get('selectedEntity'));
         return view('create')
-            ->with('pageType', 'page');
+            ->with('pageType', 'page')
+            ->with('fields', $fields);
     }
 
     public function store(Request $request)
@@ -36,12 +41,13 @@ class PageResController extends Controller
                 'pageCode' => 'required',
                 'captionUA' => 'required',
                 'captionRU' => 'required',
-                'contentUA' => 'required',
-                'contentRU' => 'required',
                 'imageMain' => 'required'
             ]);
+
             $pageCode = 'site/' . $request->input('pageCode') . '/ua';
             Page::createPage($request);
+            CustomField::create($request);
+            $request->session()->flush();
             return redirect($pageCode)->with('success', 'Page saved!');
         } else if ($request -> input('container') == 'container item') {
             $request->validate([
@@ -66,32 +72,25 @@ class PageResController extends Controller
     {
         if ($page->aliasAt != null) $images = Image::render($page->aliasAt);
         else $images = Image::render($page->code);
+        $fields = CustomField::findAllByPageCode($page->code);
         return view('edit')
             ->with('page', $page)
-            ->with('images', $images);
+            ->with('images', $images)
+            ->with('fields', $fields);
     }
 
-    public function update(Request $request, Page $page)
+    public function update(Request $request, $pageCode)
     {
-        if ($request->input('container') == 'page') {
-            $request->validate([
-                'captionUA' => 'required',
-                'captionRU' => 'required',
-                'contentUA' => 'required',
-                'contentRU' => 'required'
-            ]);
-            Image::updateImages($request);
-        } else {
-            $request->validate([
-                'captionUA' => 'required',
-                'captionRU' => 'required',
-                'imageMain' => 'required'
-            ]);
-        }
-        $page->update($request->all());
+        $page = Page::render($pageCode);
+        $request->validate([
+            'captionUA' => 'required',
+            'captionRU' => 'required'
+        ]);
+        CustomField::updateF($request, $page);
+        Page::updateP($request, $pageCode);
 
         return redirect()->route('page.index')
-            ->with('success', 'Project updated successfully');
+            ->with('success', 'Page was updated successfully!');
     }
 
     public function destroy(Page $page)
@@ -99,6 +98,7 @@ class PageResController extends Controller
         $pageCode = $page->code;
         Image::deleteImages($pageCode);
         Page::deletePage($pageCode);
+        CustomField::deleteF($pageCode);
         return redirect()->route('page.index')
             ->with('success', 'Page was deleted successfully!');
     }

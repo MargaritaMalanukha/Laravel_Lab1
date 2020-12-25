@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomField;
+use App\Models\Field;
 use App\Models\Image;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -17,11 +19,14 @@ class PageController extends Controller
             Page::fillAlias($page);
             $image = Image::render($page->aliasAt);
             $lang = $request->route('lang');
+            $fields = CustomField::findAllByPageCode($request->route('pageCode'));
             return view('info')
                 ->with('page', $page)
                 ->with('image', $image)
-                ->with('lang', $lang);
+                ->with('lang', $lang)
+                ->with('fields', $fields);
         }
+
 
         if ($request->route('pageCode') == 'countries') { //define if the page if a main page (it hasn't got any properties)
             $pages = Page::renderChildren($request->route('pageCode'));
@@ -32,8 +37,9 @@ class PageController extends Controller
                 ->with('options', self::$options);
         }
 
+        $fields = CustomField::findAllByPageCode($page->code);
 
-        if (Page::hasAChild($page->code) == true) { //define if the page is a catalog
+        if (Page::hasAChild($page->code) == true && $fields == null) { //define if the page is a catalog
             $pages = Page::renderChildren($request->route('pageCode'));
             return view('container')
                 ->with('pages', $pages)
@@ -41,16 +47,18 @@ class PageController extends Controller
                 ->with('parentCode', $page->parentCode)
                 ->with('options', self::$options);
         }
-        if ($page->contentUA == null) { //if a catalog (page without content) has no children
+        if ($page->contentUA == null && $fields == null) { //if a catalog (page without content) has no children
             return view('pageNotFound');
         }
         $image = Image::render($page->code); //returns array of images
         $lang = $request->route('lang');
 
+
         return view('info')
             ->with('page', $page)
             ->with('image', $image)
-            ->with('lang', $lang);
+            ->with('lang', $lang)
+            ->with('fields', $fields);
     }
 
     public function order(Request $request) {
@@ -86,6 +94,12 @@ class PageController extends Controller
     public function createAlias() {
         return view('create')
             ->with('pageType', 'alias');
+    }
+
+    public function createWithCustomFields(Request $request){
+        $selectedEntity = $request->input('entity');
+        $request->session()->put('selectedEntity', $selectedEntity);
+        return redirect()->route('page.create');
     }
 
 

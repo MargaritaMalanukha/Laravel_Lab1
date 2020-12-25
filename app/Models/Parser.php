@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Self_;
 
 class Parser extends Model
 {
@@ -33,6 +32,7 @@ class Parser extends Model
         for ($i = 0; $i < count($parsedArray); $i++)  {// now each command is in [i][0] element of array
             $parsedArray[$i] = explode(']]', $parsedArray[$i]);
         }
+        $commands = array(' ');
         for ($i = 1; $i < count($parsedArray); $i++) {
             $commands[$i] = $parsedArray[$i][0];
             if (str_contains($commands[$i], self::$given_commands[1])) {

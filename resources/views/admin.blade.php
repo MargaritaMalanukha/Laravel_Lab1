@@ -9,9 +9,12 @@
 <section class="admin-panel-container">
     <div class="admin-panel-block">
         <div class="admin-upper-buttons-wrapper" >
-            <a class="button" id="admin-create-button" href="{{ route('page.create') }}">CREATE</a>
+            <a class="button" id="admin-create-button" href="{{ route('entity.index') }}">CREATE</a>
             <a class="button" id="admin-create-button" href="/page/create/alias">CREATE ALIAS</a>
             <a class="button" id="admin-create-button" href="site/countries/ua">GO TO MAIN</a>
+        </div>
+        <div class="admin-lower-buttons-wrapper">
+            <a class="button" id="admin-create-button" style="width: 300px" href="{{ route('custom_fields.index') }}">MANAGE CUSTOM FIELDS</a>
         </div>
 
         @if ($message = Session::get('success'))

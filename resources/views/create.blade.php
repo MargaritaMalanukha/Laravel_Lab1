@@ -77,6 +77,20 @@
                             </div>
                         </div>
                     @endif
+                        @if($fields != null)
+
+                            @foreach($fields as $field)
+
+                                <div class="admin-page-line" style="margin-bottom: 50px">
+                                    <div class="form-group">
+                                        <strong>{{ $field->caption }}:</strong>
+                                        <input type="text" name="{{$field->field}}" class="form-control">
+                                    </div>
+                                </div>
+
+                            @endforeach
+
+                        @endif
 
                     <div class="admin-page-line" style="margin-top: 30px">
                         <button type="submit" class="button" id="store-button">Submit</button>

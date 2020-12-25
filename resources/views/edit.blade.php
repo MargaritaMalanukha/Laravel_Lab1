@@ -8,7 +8,7 @@
 
     <section class="admin-panel-container">
         <div class="admin-panel-block" style="align-items: center">
-            <form action="{{ route('page.update', $page->id) }}" method="POST">
+            <form action="{{ route('page.update', $page->code) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -62,6 +62,22 @@
                                 </div>
                             </div>
                         </div>
+                        @if ($fields != null)
+                            @foreach($fields as $field)
+                                <div class="admin-page-line">
+                                    <div class="form-group">
+                                        <strong>Field Caption:</strong>
+                                        <input type="text" name="caption-{{ $loop->index }}" class="form-control" value="{{$field->fieldName}}">
+                                    </div>
+                                </div>
+                                <div class="admin-page-line">
+                                    <div class="form-group">
+                                        <strong>Field value:</strong>
+                                        <input type="text" name="value-{{ $loop->index }}" class="form-control" value="{{$field->value}}">
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                     @endif
                     @if($page->aliasAt != null)
                         <div class="admin-page-line">

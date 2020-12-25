@@ -53,6 +53,11 @@
                     @else
                         {!! $page->contentRU !!}
                     @endif
+                    @if($fields != null)
+                        @foreach($fields as $field)
+                            {{ $field->fieldName }}: {{ $field->value }} <br/>
+                        @endforeach
+                        @endif
 				</div>
 			</div>
 		</div>

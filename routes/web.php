@@ -18,3 +18,7 @@ Route::post('/site/{pageCode}/{lang}', 'App\Http\Controllers\PageController@orde
 Route::resource('/page', 'App\Http\Controllers\PageResController');
 Route::get('/page/create/alias', 'App\Http\Controllers\PageController@createAlias');
 Route::post('/site', 'App\Http\Controllers\LangController@changeLang');
+
+Route::resource('/custom_fields', 'App\Http\Controllers\CustomFieldController');
+Route::resource('/entity', 'App\Http\Controllers\EntitieController');
+Route::post('/page/create/custom_fields', 'App\Http\Controllers\PageController@createWithCustomFields');
